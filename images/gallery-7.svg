@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" fill="none">
+  <rect width="300" height="200" rx="20" fill="#1a1a1a"/>
+  <rect x="30" y="20" width="240" height="160" rx="15" fill="#fff"/>
+  <rect x="50" y="40" width="200" height="100" rx="8" fill="#f8f9fa" stroke="#d4a853" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="150" y="85" font-family="Arial" font-size="24" text-anchor="middle">📷</text>
+  <text x="150" y="110" font-family="Arial" font-size="10" fill="#6c757d" text-anchor="middle">Tap to scan receipt</text>
+  <rect x="60" y="150" width="180" height="20" rx="10" fill="#0d4f4f"/>
+  <text x="150" y="164" font-family="Arial" font-size="10" fill="#fff" text-anchor="middle">Scan Receipt</text>
+</svg>
+

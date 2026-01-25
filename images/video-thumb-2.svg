@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" fill="none">
+  <defs>
+    <linearGradient id="vtbg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a853"/>
+      <stop offset="100%" style="stop-color:#b8923f"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#vtbg2)"/>
+  <rect x="50" y="50" width="540" height="260" rx="12" fill="#fff" opacity="0.95"/>
+  <circle cx="200" cy="180" r="60" fill="#f8f9fa"/>
+  <path d="M200 120 A60 60 0 0 1 260 180 L200 180 Z" fill="#0d4f4f"/>
+  <path d="M260 180 A60 60 0 0 1 200 240 L200 180 Z" fill="#d4a853"/>
+  <rect x="300" y="120" width="250" height="120" rx="8" fill="#f8f9fa"/>
+  <rect x="320" y="140" width="100" height="10" rx="4" fill="#0d4f4f"/>
+  <rect x="320" y="160" width="200" height="8" rx="4" fill="#e9ecef"/>
+  <rect x="320" y="180" width="180" height="8" rx="4" fill="#e9ecef"/>
+  <rect x="320" y="200" width="150" height="8" rx="4" fill="#e9ecef"/>
+  <text x="320" y="250" font-family="Arial" font-size="14" fill="#6c757d" text-anchor="middle">Advanced Features Guide</text>
+</svg>
+

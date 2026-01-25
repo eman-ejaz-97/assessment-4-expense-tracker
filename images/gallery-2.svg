@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" fill="none">
+  <rect width="300" height="200" fill="#f8f9fa"/>
+  <text x="150" y="30" font-family="Arial" font-size="14" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Monthly Report</text>
+  <circle cx="150" cy="110" r="60" fill="#e9ecef"/>
+  <path d="M150 50 A60 60 0 0 1 210 110 L150 110 Z" fill="#0d4f4f"/>
+  <path d="M210 110 A60 60 0 0 1 150 170 L150 110 Z" fill="#d4a853"/>
+  <path d="M150 170 A60 60 0 0 1 90 110 L150 110 Z" fill="#1a7a7a"/>
+  <path d="M90 110 A60 60 0 0 1 150 50 L150 110 Z" fill="#b8923f"/>
+</svg>
+

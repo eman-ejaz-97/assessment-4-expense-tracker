@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <defs>
+    <linearGradient id="teamBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa"/>
+      <stop offset="100%" style="stop-color:#e9ecef"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="600" height="400" rx="20" fill="url(#teamBg)"/>
+  
+  <!-- Office scene -->
+  <!-- Desk -->
+  <rect x="100" y="250" width="400" height="20" rx="4" fill="#0d4f4f"/>
+  <rect x="120" y="270" width="15" height="80" fill="#0d4f4f"/>
+  <rect x="465" y="270" width="15" height="80" fill="#0d4f4f"/>
+  
+  <!-- Monitor -->
+  <rect x="220" y="140" width="160" height="100" rx="8" fill="#1a1a1a"/>
+  <rect x="228" y="148" width="144" height="76" rx="4" fill="#0d4f4f"/>
+  <rect x="285" y="240" width="30" height="15" fill="#1a1a1a"/>
+  <rect x="260" y="250" width="80" height="5" rx="2" fill="#1a1a1a"/>
+  
+  <!-- Screen content -->
+  <rect x="238" y="158" width="50" height="6" rx="3" fill="#d4a853"/>
+  <rect x="238" y="170" width="80" height="4" rx="2" fill="rgba(255,255,255,0.5)"/>
+  <rect x="238" y="180" width="60" height="4" rx="2" fill="rgba(255,255,255,0.5)"/>
+  
+  <!-- Chart on screen -->
+  <rect x="238" y="195" width="20" height="20" fill="#d4a853"/>
+  <rect x="263" y="190" width="20" height="25" fill="#fff" opacity="0.7"/>
+  <rect x="288" y="200" width="20" height="15" fill="#d4a853"/>
+  <rect x="313" y="185" width="20" height="30" fill="#fff" opacity="0.7"/>
+  <rect x="338" y="193" width="20" height="22" fill="#d4a853"/>
+  
+  <!-- Person 1 (sitting) -->
+  <circle cx="300" cy="90" r="30" fill="#e8c989"/>
+  <ellipse cx="300" cy="170" rx="35" ry="50" fill="#0d4f4f"/>
+  <circle cx="290" cy="85" r="4" fill="#1a1a1a"/>
+  <circle cx="310" cy="85" r="4" fill="#1a1a1a"/>
+  <path d="M292 100 Q300 108 308 100" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+  
+  <!-- Person 2 (standing left) -->
+  <circle cx="120" cy="150" r="25" fill="#d4a853"/>
+  <ellipse cx="120" cy="230" rx="30" ry="60" fill="#1a7a7a"/>
+  <circle cx="112" cy="146" r="3" fill="#1a1a1a"/>
+  <circle cx="128" cy="146" r="3" fill="#1a1a1a"/>
+  
+  <!-- Person 3 (standing right) -->
+  <circle cx="480" cy="150" r="25" fill="#b8923f"/>
+  <ellipse cx="480" cy="230" rx="30" ry="60" fill="#083535"/>
+  <circle cx="472" cy="146" r="3" fill="#1a1a1a"/>
+  <circle cx="488" cy="146" r="3" fill="#1a1a1a"/>
+  
+  <!-- Coffee cup -->
+  <rect x="400" y="230" width="20" height="20" rx="3" fill="#fff"/>
+  <rect x="420" y="235" width="8" height="10" rx="4" fill="none" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Notebook -->
+  <rect x="180" y="230" width="30" height="20" rx="2" fill="#d4a853"/>
+  <line x1="185" y1="235" x2="205" y2="235" stroke="#fff" stroke-width="1"/>
+  <line x1="185" y1="240" x2="200" y2="240" stroke="#fff" stroke-width="1"/>
+  <line x1="185" y1="245" x2="203" y2="245" stroke="#fff" stroke-width="1"/>
+  
+  <!-- Plant -->
+  <rect x="50" y="300" width="30" height="40" rx="4" fill="#6c757d"/>
+  <ellipse cx="65" cy="290" rx="25" ry="20" fill="#28a745"/>
+  <ellipse cx="55" cy="280" rx="15" ry="15" fill="#28a745"/>
+  <ellipse cx="75" cy="285" rx="12" ry="12" fill="#28a745"/>
+  
+  <!-- Window -->
+  <rect x="450" y="50" width="120" height="80" rx="4" fill="#fff" stroke="#0d4f4f" stroke-width="2"/>
+  <line x1="510" y1="50" x2="510" y2="130" stroke="#0d4f4f" stroke-width="2"/>
+  <line x1="450" y1="90" x2="570" y2="90" stroke="#0d4f4f" stroke-width="2"/>
+</svg>
+

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" fill="none">
+  <defs>
+    <linearGradient id="c2bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a853"/>
+      <stop offset="100%" style="stop-color:#b8923f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#c2bg)"/>
+  <rect x="50" y="30" width="700" height="340" rx="16" fill="#fff" opacity="0.97"/>
+  <text x="400" y="70" font-family="Arial" font-size="16" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Analytics Dashboard</text>
+  <circle cx="220" cy="200" r="100" fill="#f8f9fa"/>
+  <path d="M220 100 A100 100 0 0 1 320 200 L220 200 Z" fill="#0d4f4f"/>
+  <path d="M320 200 A100 100 0 0 1 220 300 L220 200 Z" fill="#d4a853"/>
+  <path d="M220 300 A100 100 0 0 1 120 200 L220 200 Z" fill="#1a7a7a"/>
+  <path d="M120 200 A100 100 0 0 1 220 100 L220 200 Z" fill="#b8923f"/>
+  <rect x="380" y="100" width="320" height="60" rx="8" fill="#f8f9fa"/>
+  <rect x="400" y="115" width="10" height="10" fill="#0d4f4f"/>
+  <text x="420" y="125" font-family="Arial" font-size="11" fill="#1a1a1a">Food (35%)</text>
+  <text x="670" y="125" font-family="Arial" font-size="11" fill="#0d4f4f" text-anchor="end">$1,135</text>
+  <rect x="400" y="135" width="200" height="8" rx="4" fill="#e9ecef"/>
+  <rect x="400" y="135" width="140" height="8" rx="4" fill="#0d4f4f"/>
+  <rect x="380" y="180" width="320" height="60" rx="8" fill="#f8f9fa"/>
+  <rect x="400" y="195" width="10" height="10" fill="#d4a853"/>
+  <text x="420" y="205" font-family="Arial" font-size="11" fill="#1a1a1a">Transport (25%)</text>
+  <text x="670" y="205" font-family="Arial" font-size="11" fill="#d4a853" text-anchor="end">$812</text>
+  <rect x="400" y="215" width="200" height="8" rx="4" fill="#e9ecef"/>
+  <rect x="400" y="215" width="100" height="8" rx="4" fill="#d4a853"/>
+  <rect x="380" y="260" width="320" height="60" rx="8" fill="#f8f9fa"/>
+  <rect x="400" y="275" width="10" height="10" fill="#1a7a7a"/>
+  <text x="420" y="285" font-family="Arial" font-size="11" fill="#1a1a1a">Shopping (25%)</text>
+  <text x="670" y="285" font-family="Arial" font-size="11" fill="#1a7a7a" text-anchor="end">$812</text>
+  <rect x="400" y="295" width="200" height="8" rx="4" fill="#e9ecef"/>
+  <rect x="400" y="295" width="100" height="8" rx="4" fill="#1a7a7a"/>
+</svg>
+

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d4f4f"/>
+      <stop offset="100%" style="stop-color:#1a7a7a"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a853"/>
+      <stop offset="100%" style="stop-color:#b8923f"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="450" rx="20" fill="url(#bg)"/>
+  
+  <!-- Dashboard mockup -->
+  <rect x="30" y="30" width="540" height="390" rx="10" fill="#fff" opacity="0.95"/>
+  
+  <!-- Header bar -->
+  <rect x="30" y="30" width="540" height="50" rx="10" fill="#f8f9fa"/>
+  <circle cx="60" cy="55" r="8" fill="#0d4f4f"/>
+  <rect x="80" y="50" width="80" height="10" rx="5" fill="#0d4f4f"/>
+  
+  <!-- Sidebar -->
+  <rect x="30" y="80" width="120" height="340" fill="#f8f9fa"/>
+  <rect x="50" y="100" width="80" height="8" rx="4" fill="#0d4f4f"/>
+  <rect x="50" y="120" width="60" height="8" rx="4" fill="#6c757d"/>
+  <rect x="50" y="145" width="70" height="8" rx="4" fill="#6c757d"/>
+  <rect x="50" y="170" width="65" height="8" rx="4" fill="#6c757d"/>
+  <rect x="50" y="195" width="75" height="8" rx="4" fill="#6c757d"/>
+  
+  <!-- Main content area -->
+  <!-- Stats cards -->
+  <rect x="170" y="100" width="120" height="80" rx="8" fill="#fff" stroke="#e9ecef" stroke-width="2"/>
+  <text x="190" y="130" font-family="Arial" font-size="12" fill="#6c757d">Total Expenses</text>
+  <text x="190" y="160" font-family="Arial" font-size="20" font-weight="bold" fill="#0d4f4f">$4,567</text>
+  
+  <rect x="310" y="100" width="120" height="80" rx="8" fill="#fff" stroke="#e9ecef" stroke-width="2"/>
+  <text x="330" y="130" font-family="Arial" font-size="12" fill="#6c757d">This Month</text>
+  <text x="330" y="160" font-family="Arial" font-size="20" font-weight="bold" fill="#d4a853">$1,234</text>
+  
+  <rect x="450" y="100" width="100" height="80" rx="8" fill="#fff" stroke="#e9ecef" stroke-width="2"/>
+  <text x="465" y="130" font-family="Arial" font-size="12" fill="#6c757d">Budget Left</text>
+  <text x="465" y="160" font-family="Arial" font-size="20" font-weight="bold" fill="#28a745">$766</text>
+  
+  <!-- Chart area -->
+  <rect x="170" y="200" width="380" height="180" rx="8" fill="#fff" stroke="#e9ecef" stroke-width="2"/>
+  <text x="190" y="225" font-family="Arial" font-size="14" font-weight="bold" fill="#1a1a1a">Spending Overview</text>
+  
+  <!-- Bar chart -->
+  <rect x="200" y="320" width="30" height="40" rx="4" fill="url(#gold)"/>
+  <rect x="250" y="290" width="30" height="70" rx="4" fill="url(#bg)"/>
+  <rect x="300" y="300" width="30" height="60" rx="4" fill="url(#gold)"/>
+  <rect x="350" y="270" width="30" height="90" rx="4" fill="url(#bg)"/>
+  <rect x="400" y="310" width="30" height="50" rx="4" fill="url(#gold)"/>
+  <rect x="450" y="280" width="30" height="80" rx="4" fill="url(#bg)"/>
+  <rect x="500" y="295" width="30" height="65" rx="4" fill="url(#gold)"/>
+  
+  <!-- X-axis labels -->
+  <text x="207" y="375" font-family="Arial" font-size="10" fill="#6c757d">Jan</text>
+  <text x="257" y="375" font-family="Arial" font-size="10" fill="#6c757d">Feb</text>
+  <text x="305" y="375" font-family="Arial" font-size="10" fill="#6c757d">Mar</text>
+  <text x="355" y="375" font-family="Arial" font-size="10" fill="#6c757d">Apr</text>
+  <text x="403" y="375" font-family="Arial" font-size="10" fill="#6c757d">May</text>
+  <text x="455" y="375" font-family="Arial" font-size="10" fill="#6c757d">Jun</text>
+  <text x="507" y="375" font-family="Arial" font-size="10" fill="#6c757d">Jul</text>
+</svg>
+

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" fill="none">
+  <defs>
+    <linearGradient id="c3bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a7a7a"/>
+      <stop offset="100%" style="stop-color:#0d4f4f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#c3bg)"/>
+  <rect x="50" y="30" width="700" height="340" rx="16" fill="#fff" opacity="0.97"/>
+  <text x="400" y="70" font-family="Arial" font-size="16" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Settings</text>
+  <rect x="80" y="90" width="640" height="50" rx="8" fill="#f8f9fa"/>
+  <text x="100" y="120" font-family="Arial" font-size="12" fill="#1a1a1a">👤 Profile Settings</text>
+  <text x="680" y="120" font-family="Arial" font-size="14" fill="#6c757d" text-anchor="end">›</text>
+  <rect x="80" y="150" width="640" height="50" rx="8" fill="#f8f9fa"/>
+  <text x="100" y="180" font-family="Arial" font-size="12" fill="#1a1a1a">🔔 Notification Preferences</text>
+  <text x="680" y="180" font-family="Arial" font-size="14" fill="#6c757d" text-anchor="end">›</text>
+  <rect x="80" y="210" width="640" height="50" rx="8" fill="#f8f9fa"/>
+  <text x="100" y="240" font-family="Arial" font-size="12" fill="#1a1a1a">🏦 Linked Accounts</text>
+  <text x="680" y="240" font-family="Arial" font-size="14" fill="#6c757d" text-anchor="end">›</text>
+  <rect x="80" y="270" width="640" height="50" rx="8" fill="#f8f9fa"/>
+  <text x="100" y="300" font-family="Arial" font-size="12" fill="#1a1a1a">🔒 Security &amp; Privacy</text>
+  <text x="680" y="300" font-family="Arial" font-size="14" fill="#6c757d" text-anchor="end">›</text>
+  <rect x="80" y="330" width="640" height="30" rx="8" fill="#f8f9fa"/>
+  <text x="100" y="350" font-family="Arial" font-size="12" fill="#dc3545">🚪 Sign Out</text>
+</svg>
+

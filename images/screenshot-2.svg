@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" fill="none">
+  <rect width="400" height="200" rx="8" fill="#083535"/>
+  <text x="200" y="30" font-family="Arial" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">Budget Alerts</text>
+  <rect x="20" y="50" width="360" height="60" rx="6" fill="#fff"/>
+  <text x="35" y="70" font-family="Arial" font-size="10" fill="#dc3545">⚠️ Alert: Shopping budget at 90%</text>
+  <rect x="35" y="80" width="330" height="15" rx="4" fill="#e9ecef"/>
+  <rect x="35" y="80" width="297" height="15" rx="4" fill="#dc3545"/>
+  <text x="350" y="92" font-family="Arial" font-size="8" fill="#dc3545" text-anchor="end">$450/$500</text>
+  <rect x="20" y="120" width="360" height="60" rx="6" fill="#fff"/>
+  <text x="35" y="140" font-family="Arial" font-size="10" fill="#ffc107">⚡ Notice: Food budget at 75%</text>
+  <rect x="35" y="150" width="330" height="15" rx="4" fill="#e9ecef"/>
+  <rect x="35" y="150" width="247" height="15" rx="4" fill="#ffc107"/>
+  <text x="350" y="162" font-family="Arial" font-size="8" fill="#ffc107" text-anchor="end">$300/$400</text>
+</svg>
+

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" fill="none">
+  <rect width="300" height="200" fill="#fff"/>
+  <text x="150" y="25" font-family="Arial" font-size="12" font-weight="bold" fill="#1a1a1a" text-anchor="middle">Spending Trends</text>
+  <line x1="40" y1="40" x2="40" y2="170" stroke="#e9ecef" stroke-width="1"/>
+  <line x1="40" y1="170" x2="270" y2="170" stroke="#e9ecef" stroke-width="1"/>
+  <polyline points="50,150 80,120 110,130 140,90 170,100 200,70 230,80 260,50" fill="none" stroke="#0d4f4f" stroke-width="3"/>
+  <polyline points="50,160 80,140 110,145 140,110 170,120 200,95 230,105 260,85" fill="none" stroke="#d4a853" stroke-width="2" stroke-dasharray="5,5"/>
+  <circle cx="50" cy="150" r="4" fill="#0d4f4f"/>
+  <circle cx="140" cy="90" r="4" fill="#0d4f4f"/>
+  <circle cx="260" cy="50" r="4" fill="#0d4f4f"/>
+  <text x="50" y="185" font-family="Arial" font-size="8" fill="#6c757d">Jan</text>
+  <text x="140" y="185" font-family="Arial" font-size="8" fill="#6c757d">Apr</text>
+  <text x="255" y="185" font-family="Arial" font-size="8" fill="#6c757d">Jul</text>
+</svg>
+

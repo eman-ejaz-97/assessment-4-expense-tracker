@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" fill="none">
+  <rect width="300" height="200" fill="#0d4f4f"/>
+  <text x="150" y="30" font-family="Arial" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">Budget Tracking</text>
+  <rect x="30" y="50" width="240" height="25" rx="4" fill="#1a7a7a"/>
+  <rect x="30" y="50" width="180" height="25" rx="4" fill="#d4a853"/>
+  <text x="40" y="67" font-family="Arial" font-size="10" fill="#fff">Food - 75%</text>
+  <rect x="30" y="90" width="240" height="25" rx="4" fill="#1a7a7a"/>
+  <rect x="30" y="90" width="120" height="25" rx="4" fill="#28a745"/>
+  <text x="40" y="107" font-family="Arial" font-size="10" fill="#fff">Transport - 50%</text>
+  <rect x="30" y="130" width="240" height="25" rx="4" fill="#1a7a7a"/>
+  <rect x="30" y="130" width="216" height="25" rx="4" fill="#dc3545"/>
+  <text x="40" y="147" font-family="Arial" font-size="10" fill="#fff">Shopping - 90%</text>
+  <rect x="30" y="170" width="240" height="25" rx="4" fill="#1a7a7a"/>
+  <rect x="30" y="170" width="72" height="25" rx="4" fill="#28a745"/>
+  <text x="40" y="187" font-family="Arial" font-size="10" fill="#fff">Entertainment - 30%</text>
+</svg>
+

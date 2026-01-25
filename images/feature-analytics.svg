@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <defs>
+    <linearGradient id="analyticsBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d4f4f"/>
+      <stop offset="100%" style="stop-color:#1a7a7a"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="600" height="400" rx="20" fill="url(#analyticsBg)"/>
+  
+  <!-- Analytics dashboard mockup -->
+  <rect x="40" y="40" width="520" height="320" rx="12" fill="#fff"/>
+  
+  <!-- Header -->
+  <rect x="40" y="40" width="520" height="45" rx="12" fill="#f8f9fa"/>
+  <circle cx="70" cy="62" r="8" fill="#0d4f4f"/>
+  <rect x="90" y="57" width="100" height="10" rx="5" fill="#0d4f4f"/>
+  
+  <!-- Pie chart section -->
+  <text x="60" y="115" font-family="Arial" font-size="14" font-weight="bold" fill="#1a1a1a">Category Breakdown</text>
+  
+  <!-- Pie chart -->
+  <circle cx="150" cy="200" r="60" fill="#e9ecef"/>
+  <path d="M150 140 A60 60 0 0 1 210 200 L150 200 Z" fill="#0d4f4f"/>
+  <path d="M210 200 A60 60 0 0 1 150 260 L150 200 Z" fill="#d4a853"/>
+  <path d="M150 260 A60 60 0 0 1 90 200 L150 200 Z" fill="#1a7a7a"/>
+  <path d="M90 200 A60 60 0 0 1 150 140 L150 200 Z" fill="#b8923f"/>
+  
+  <!-- Legend -->
+  <rect x="60" y="280" width="12" height="12" rx="2" fill="#0d4f4f"/>
+  <text x="78" y="290" font-family="Arial" font-size="10" fill="#6c757d">Food (35%)</text>
+  
+  <rect x="60" y="300" width="12" height="12" rx="2" fill="#d4a853"/>
+  <text x="78" y="310" font-family="Arial" font-size="10" fill="#6c757d">Transport (25%)</text>
+  
+  <rect x="150" y="280" width="12" height="12" rx="2" fill="#1a7a7a"/>
+  <text x="168" y="290" font-family="Arial" font-size="10" fill="#6c757d">Shopping (25%)</text>
+  
+  <rect x="150" y="300" width="12" height="12" rx="2" fill="#b8923f"/>
+  <text x="168" y="310" font-family="Arial" font-size="10" fill="#6c757d">Bills (15%)</text>
+  
+  <!-- Line chart section -->
+  <text x="280" y="115" font-family="Arial" font-size="14" font-weight="bold" fill="#1a1a1a">Spending Trends</text>
+  
+  <!-- Line chart grid -->
+  <line x1="280" y1="140" x2="280" y2="260" stroke="#e9ecef" stroke-width="1"/>
+  <line x1="280" y1="260" x2="530" y2="260" stroke="#e9ecef" stroke-width="1"/>
+  
+  <!-- Grid lines -->
+  <line x1="280" y1="180" x2="530" y2="180" stroke="#e9ecef" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="280" y1="220" x2="530" y2="220" stroke="#e9ecef" stroke-width="1" stroke-dasharray="4"/>
+  
+  <!-- Line chart -->
+  <polyline points="290,240 330,200 370,220 410,180 450,190 490,160 520,170" 
+            fill="none" stroke="#0d4f4f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Data points -->
+  <circle cx="290" cy="240" r="5" fill="#0d4f4f"/>
+  <circle cx="330" cy="200" r="5" fill="#0d4f4f"/>
+  <circle cx="370" cy="220" r="5" fill="#0d4f4f"/>
+  <circle cx="410" cy="180" r="5" fill="#d4a853"/>
+  <circle cx="450" cy="190" r="5" fill="#0d4f4f"/>
+  <circle cx="490" cy="160" r="5" fill="#0d4f4f"/>
+  <circle cx="520" cy="170" r="5" fill="#0d4f4f"/>
+  
+  <!-- X-axis labels -->
+  <text x="287" y="280" font-family="Arial" font-size="9" fill="#6c757d">Jan</text>
+  <text x="327" y="280" font-family="Arial" font-size="9" fill="#6c757d">Feb</text>
+  <text x="365" y="280" font-family="Arial" font-size="9" fill="#6c757d">Mar</text>
+  <text x="405" y="280" font-family="Arial" font-size="9" fill="#6c757d">Apr</text>
+  <text x="445" y="280" font-family="Arial" font-size="9" fill="#6c757d">May</text>
+  <text x="487" y="280" font-family="Arial" font-size="9" fill="#6c757d">Jun</text>
+  <text x="517" y="280" font-family="Arial" font-size="9" fill="#6c757d">Jul</text>
+  
+  <!-- Stats cards -->
+  <rect x="280" y="295" width="115" height="50" rx="6" fill="#f8f9fa"/>
+  <text x="295" y="318" font-family="Arial" font-size="10" fill="#6c757d">Monthly Avg</text>
+  <text x="295" y="335" font-family="Arial" font-size="16" font-weight="bold" fill="#0d4f4f">$2,340</text>
+  
+  <rect x="405" y="295" width="115" height="50" rx="6" fill="#f8f9fa"/>
+  <text x="420" y="318" font-family="Arial" font-size="10" fill="#6c757d">Total Saved</text>
+  <text x="420" y="335" font-family="Arial" font-size="16" font-weight="bold" fill="#28a745">$1,256</text>
+</svg>
+

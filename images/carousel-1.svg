@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" fill="none">
+  <defs>
+    <linearGradient id="c1bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d4f4f"/>
+      <stop offset="100%" style="stop-color:#1a7a7a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#c1bg)"/>
+  <rect x="50" y="30" width="700" height="340" rx="16" fill="#fff" opacity="0.97"/>
+  <rect x="80" y="60" width="200" height="40" rx="8" fill="#f8f9fa"/>
+  <text x="100" y="85" font-family="Arial" font-size="12" fill="#0d4f4f" font-weight="bold">Dashboard Overview</text>
+  <rect x="80" y="120" width="200" height="100" rx="8" fill="#f8f9fa"/>
+  <text x="100" y="150" font-family="Arial" font-size="11" fill="#6c757d">Total Balance</text>
+  <text x="100" y="180" font-family="Arial" font-size="24" font-weight="bold" fill="#0d4f4f">$24,568</text>
+  <text x="100" y="200" font-family="Arial" font-size="10" fill="#28a745">↑ 12% from last month</text>
+  <rect x="80" y="240" width="200" height="100" rx="8" fill="#f8f9fa"/>
+  <text x="100" y="270" font-family="Arial" font-size="11" fill="#6c757d">Monthly Spending</text>
+  <text x="100" y="300" font-family="Arial" font-size="24" font-weight="bold" fill="#d4a853">$3,245</text>
+  <text x="100" y="320" font-family="Arial" font-size="10" fill="#dc3545">↓ 8% from last month</text>
+  <rect x="310" y="60" width="410" height="280" rx="8" fill="#f8f9fa"/>
+  <text x="340" y="95" font-family="Arial" font-size="14" font-weight="bold" fill="#1a1a1a">Expense Chart</text>
+  <rect x="340" y="280" width="50" height="30" fill="#0d4f4f"/>
+  <rect x="410" y="250" width="50" height="60" fill="#d4a853"/>
+  <rect x="480" y="270" width="50" height="40" fill="#0d4f4f"/>
+  <rect x="550" y="230" width="50" height="80" fill="#d4a853"/>
+  <rect x="620" y="260" width="50" height="50" fill="#0d4f4f"/>
+</svg>
+
