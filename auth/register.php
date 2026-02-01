@@ -129,7 +129,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 logActivity('REGISTRATION', 'New user registered: ' . $formData['username']);
                 
-                setFlashMessage('success', 'Account created successfully! Please log in to continue.');
+                // Send welcome email
+                $emailSent = sendRegistrationEmail(
+                    $formData['email'],
+                    $formData['first_name'],
+                    $formData['username']
+                );
+                
+                if ($emailSent) {
+                    setFlashMessage('success', 'Account created successfully! A confirmation email has been sent. Please log in to continue.');
+                } else {
+                    setFlashMessage('success', 'Account created successfully! Please log in to continue.');
+                }
                 redirect(SITE_URL . '/auth/login.php');
                 
             } catch (PDOException $e) {

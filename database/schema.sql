@@ -253,6 +253,31 @@ CREATE TRIGGER update_messages_updated_at
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
+-- =====================================================
+-- Password Resets Table
+-- Stores password reset tokens/codes for email verification
+-- =====================================================
+CREATE TABLE IF NOT EXISTS password_resets (
+    reset_id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    reset_code VARCHAR(6) NOT NULL,
+    token_hash VARCHAR(255) NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    used BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+-- Create indexes for password_resets
+CREATE INDEX IF NOT EXISTS idx_password_resets_email ON password_resets(email);
+CREATE INDEX IF NOT EXISTS idx_password_resets_token ON password_resets(token_hash);
+CREATE INDEX IF NOT EXISTS idx_password_resets_expires ON password_resets(expires_at);
+
+-- Add comment
+COMMENT ON COLUMN password_resets.reset_code IS '6-digit verification code sent via email';
+COMMENT ON COLUMN password_resets.token_hash IS 'Hashed token for URL-based reset (optional)';
+
 -- SEEDING THE DATABASE - DEFAULT CATEGORIES, ADMIN USER, MEMBER USER, AND REGULAR USER
 
 -- =====================================================

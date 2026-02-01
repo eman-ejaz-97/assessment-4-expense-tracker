@@ -1,3075 +1,405 @@
-/* Smart Expense Tracking System - Student ID: 20034038 */
-
-:root {
-  --primary-color: #2c7a7b;
-  --primary-dark: #234e52;
-  --primary-light: #38a3a5;
-  --accent-color: #e6a817;
-  --white: #ffffff;
-  --light-gray: #f5f5f5;
-  --medium-gray: #666666;
-  --dark-gray: #333333;
-  --black: #222222;
-  --success: #28a745;
-  --error: #dc3545;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--dark-gray);
-  background-color: var(--white);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--black);
-  margin-bottom: var(--spacing-md);
-}
-
-h1 {
-  font-size: 2.5rem;
-}
-h2 {
-  font-size: 2rem;
-}
-h3 {
-  font-size: 1.5rem;
-}
-h4 {
-  font-size: 1.25rem;
-}
-
-p {
-  margin-bottom: var(--spacing-md);
-}
-
-a {
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-ul,
-ol {
-  list-style: none;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-md);
-}
-
-.section {
-  padding: var(--spacing-xl) 0;
-}
-
-.section--dark {
-  background-color: var(--primary-dark);
-  color: var(--white);
-}
-
-.section--light {
-  background-color: var(--light-gray);
-}
-
-.text-center {
-  text-align: center;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-.btn {
-  display: inline-block;
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: 500;
-  text-decoration: none;
-  border: 2px solid transparent;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.2s ease;
-}
-
-.btn:hover {
-  text-decoration: none;
-  transform: translateY(-2px);
-}
-
-.btn--primary {
-  background-color: var(--accent-color);
-  color: var(--white);
-  border-color: var(--accent-color);
-}
-
-.btn--primary:hover {
-  background-color: #c9940f;
-}
-
-.btn--secondary {
-  background-color: transparent;
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-.btn--secondary:hover {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-.btn--white {
-  background-color: var(--white);
-  color: var(--primary-color);
-}
-
-.btn--white:hover {
-  background-color: var(--light-gray);
-}
-
-.btn--outline-white {
-  background-color: transparent;
-  color: var(--white);
-  border-color: var(--white);
-}
-
-.btn--outline-white:hover {
-  background-color: var(--white);
-  color: var(--primary-color);
-}
-
-.btn--lg {
-  padding: 14px 32px;
-  font-size: 1.1rem;
-}
-
-.btn--sm {
-  padding: 8px 16px;
-  font-size: 0.9rem;
-}
-
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background-color: var(--white);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-md);
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
-.logo__icon {
-  width: 36px;
-  height: 36px;
-  background-color: var(--primary-color);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  font-weight: 700;
-}
-
-.nav__list {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-lg);
-}
-
-.nav__list li {
-  display: flex;
-  align-items: center;
-}
-
-.nav__list .btn {
-  line-height: 1;
-}
-
-.nav__link {
-  display: flex;
-  align-items: center;
-  color: var(--dark-gray);
-  font-weight: 500;
-  padding: var(--spacing-sm) 0;
-  transition: color 0.2s ease;
-}
-
-.nav__link:hover,
-.nav__link.active {
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: var(--spacing-sm);
-}
-
-.menu-toggle__bar {
-  width: 24px;
-  height: 3px;
-  background-color: var(--dark-gray);
-  border-radius: 2px;
-  transition: transform 0.3s ease;
-}
-
-.hero {
-  padding: 120px 0 60px;
-  background-color: var(--light-gray);
-}
-
-.hero__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
-  align-items: center;
-}
-
-.hero__badge {
-  display: inline-block;
-  padding: 6px 12px;
-  background-color: var(--accent-color);
-  color: var(--white);
-  font-size: 0.875rem;
-  font-weight: 600;
-  border-radius: var(--radius-sm);
-  margin-bottom: var(--spacing-md);
-}
-
-.hero__title {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-md);
-}
-
-.hero__subtitle {
-  font-size: 1.1rem;
-  color: var(--medium-gray);
-  margin-bottom: var(--spacing-lg);
-}
-
-.hero__buttons {
-  display: flex;
-  gap: var(--spacing-md);
-  flex-wrap: wrap;
-}
-
-.hero__image img {
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.hero__stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid #ddd;
-}
-
-.stat {
-  text-align: center;
-}
-
-.stat__number {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-.stat__label {
-  font-size: 0.875rem;
-  color: var(--medium-gray);
-}
-
-.page-hero {
-  padding: 140px 0 60px;
-  background-color: var(--primary-color);
-  color: var(--white);
-  text-align: center;
-}
-
-.page-hero__title {
-  color: var(--white);
-  margin-bottom: var(--spacing-sm);
-}
-
-.page-hero__subtitle {
-  opacity: 0.9;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-lg);
-}
-
-.feature-card {
-  padding: var(--spacing-lg);
-  background-color: var(--white);
-  border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.feature-card__icon {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto var(--spacing-md);
-  background-color: var(--primary-color);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: var(--white);
-}
-
-.feature-card__title {
-  font-size: 1.2rem;
-  margin-bottom: var(--spacing-sm);
-}
-
-.feature-card__text {
-  color: var(--medium-gray);
-  font-size: 0.95rem;
-}
-
-.spotlight {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
-  align-items: center;
-}
-
-.spotlight--reverse {
-  direction: rtl;
-}
-
-.spotlight--reverse > * {
-  direction: ltr;
-}
-
-.spotlight__image img {
-  border-radius: var(--radius-md);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.spotlight__label {
-  font-size: 0.875rem;
-  color: var(--accent-color);
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: var(--spacing-sm);
-}
-
-.spotlight__text {
-  color: var(--medium-gray);
-  margin-bottom: var(--spacing-md);
-}
-
-.spotlight__list {
-  margin-bottom: var(--spacing-lg);
-}
-
-.spotlight__list li {
-  padding: var(--spacing-sm) 0;
-  padding-left: var(--spacing-lg);
-  position: relative;
-}
-
-.spotlight__list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--success);
-  font-weight: bold;
-}
-
-.partners {
-  padding: var(--spacing-lg) 0;
-  background-color: var(--light-gray);
-}
-
-.partners__title {
-  text-align: center;
-  font-size: 0.875rem;
-  color: var(--medium-gray);
-  text-transform: uppercase;
-  margin-bottom: var(--spacing-md);
-}
-
-.partners__grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--spacing-xl);
-}
-
-.partner-logo {
-  height: 35px;
-  opacity: 0.6;
-  transition: opacity 0.2s ease;
-}
-
-.partner-logo:hover {
-  opacity: 1;
-}
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-lg);
-  counter-reset: step;
-}
-
-.step {
-  text-align: center;
-  padding: var(--spacing-lg);
-}
-
-.step::before {
-  counter-increment: step;
-  content: counter(step);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  margin: 0 auto var(--spacing-md);
-  background-color: var(--accent-color);
-  color: var(--white);
-  font-size: 1.25rem;
-  font-weight: 700;
-  border-radius: 50%;
-}
-
-.step__title {
-  font-size: 1.1rem;
-  margin-bottom: var(--spacing-sm);
-}
-
-.step__text {
-  color: var(--medium-gray);
-  font-size: 0.95rem;
-}
-
-.cta {
-  text-align: center;
-  padding: var(--spacing-xl) 0;
-  background-color: var(--primary-dark);
-  color: var(--white);
-}
-
-.cta__title {
-  color: var(--white);
-  margin-bottom: var(--spacing-md);
-}
-
-.cta__text {
-  max-width: 600px;
-  margin: 0 auto var(--spacing-lg);
-  opacity: 0.9;
-}
-
-.cta__buttons {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-md);
-  flex-wrap: wrap;
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--spacing-lg);
-}
-
-.team-card {
-  text-align: center;
-  padding: var(--spacing-lg);
-  background-color: var(--white);
-  border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.team-card:hover,
-.team-card.animate-on-scroll.visible:hover {
-  transform: translateY(-5px) scale(1);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.team-card__image {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto var(--spacing-md);
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--primary-color);
-}
-
-.team-card__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.team-card__name {
-  font-size: 1.1rem;
-  margin-bottom: 4px;
-}
-
-.team-card__role {
-  color: var(--primary-color);
-  font-weight: 500;
-  font-size: 0.9rem;
-  margin-bottom: var(--spacing-md);
-}
-
-.team-card__socials {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-sm);
-}
-
-.team-card__social {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: var(--light-gray);
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-
-.team-card__social:hover {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-.timeline {
-  position: relative;
-  padding: var(--spacing-lg) 0;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background-color: var(--primary-color);
-  transform: translateX(-50%);
-}
-
-.timeline__item {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 50%;
-  position: relative;
-  margin-bottom: var(--spacing-lg);
-}
-
-.timeline__item:nth-child(even) {
-  justify-content: flex-start;
-  padding-right: 0;
-  padding-left: 50%;
-}
-
-.timeline__content {
-  background-color: var(--white);
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  max-width: 350px;
-  margin-right: var(--spacing-lg);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.timeline__item.animate-on-scroll.visible:hover .timeline__content,
-.timeline__content:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.timeline__item:nth-child(even) .timeline__content {
-  margin-right: 0;
-  margin-left: var(--spacing-lg);
-}
-
-.timeline__year {
-  color: var(--accent-color);
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.timeline__title {
-  font-size: 1.1rem;
-  margin: var(--spacing-sm) 0;
-}
-
-.timeline__text {
-  color: var(--medium-gray);
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.values-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-lg);
-}
-
-.value-card {
-  padding: var(--spacing-lg);
-  background-color: var(--white);
-  border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.value-card:hover,
-.value-card.animate-on-scroll.visible:hover {
-  transform: translateY(-5px) scale(1);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.value-card__icon {
-  width: 50px;
-  height: 50px;
-  margin: 0 auto var(--spacing-md);
-  background-color: var(--primary-color);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-}
-
-.value-card__title {
-  font-size: 1.1rem;
-  margin-bottom: var(--spacing-sm);
-}
-
-.value-card__text {
-  color: var(--medium-gray);
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.pricing-toggle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-xl);
-}
-
-.pricing-toggle__label {
-  font-weight: 500;
-  color: var(--medium-gray);
-  cursor: pointer;
-}
-
-.pricing-toggle__label.active {
-  color: var(--primary-color);
-}
-
-.pricing-toggle__switch {
-  width: 50px;
-  height: 26px;
-  background-color: #ccc;
-  border-radius: 13px;
-  cursor: pointer;
-  position: relative;
-  border: none;
-  transition: background-color 0.2s ease;
-}
-
-.pricing-toggle__switch::after {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 20px;
-  height: 20px;
-  background-color: var(--white);
-  border-radius: 50%;
-  transition: transform 0.2s ease;
-}
-
-.pricing-toggle__switch.active {
-  background-color: var(--primary-color);
-}
-
-.pricing-toggle__switch.active::after {
-  transform: translateX(24px);
-}
-
-.pricing-toggle__badge {
-  background-color: var(--success);
-  color: var(--white);
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-}
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-lg);
-}
-
-.pricing-card {
-  padding: var(--spacing-lg);
-  background-color: var(--white);
-  border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  position: relative;
-}
-
-.pricing-card--featured {
-  border: 2px solid var(--primary-color);
-  transform: scale(1.02);
-}
-
-.pricing-card__badge {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--primary-color);
-  color: var(--white);
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: var(--radius-sm);
-}
-
-.pricing-card__name {
-  font-size: 1.2rem;
-  margin-bottom: var(--spacing-md);
-}
-
-.pricing-card__price {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--primary-color);
-  margin-bottom: var(--spacing-sm);
-}
-
-.pricing-card__price sup {
-  font-size: 1rem;
-}
-
-.pricing-card__price span {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: var(--medium-gray);
-}
-
-.pricing-card__features {
-  margin: var(--spacing-lg) 0;
-  text-align: left;
-}
-
-.pricing-card__feature {
-  padding: var(--spacing-sm) 0;
-  color: var(--medium-gray);
-}
-
-.pricing-card__feature::before {
-  content: '✓ ';
-  color: var(--success);
-}
-
-.pricing-card__feature--disabled {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-
-.pricing-card__feature--disabled::before {
-  content: '✗ ';
-  color: var(--error);
-}
-
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: var(--white);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.comparison-table th,
-.comparison-table td {
-  padding: var(--spacing-md);
-  text-align: center;
-  border-bottom: 1px solid #eee;
-}
-
-.comparison-table th {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-.comparison-table th:first-child,
-.comparison-table td:first-child {
-  text-align: left;
-}
-
-.comparison-table .check {
-  color: var(--success);
-}
-
-.comparison-table .cross {
-  color: var(--error);
-}
-
-.gallery-filters {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
-  flex-wrap: wrap;
-}
-
-.gallery-filter {
-  padding: 8px 20px;
-  background-color: var(--light-gray);
-  border: none;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.gallery-filter:hover,
-.gallery-filter.active {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-md);
-}
-
-.gallery-item {
-  position: relative;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 1;
-}
-
-.gallery-item--large {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.05);
-}
-
-.gallery-item__overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: var(--spacing-md);
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.gallery-item:hover .gallery-item__overlay {
-  opacity: 1;
-}
-
-.gallery-item__title {
-  color: var(--white);
-  font-weight: 500;
-}
-
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-lg);
-}
-
-.video-item {
-  position: relative;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.video-item__thumbnail {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-}
-
-.video-item__play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: var(--primary-color);
-}
-
-.carousel {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-md);
-}
-
-.carousel__track {
-  display: flex;
-  transition: transform 0.4s ease;
-}
-
-.carousel__slide {
-  flex: 0 0 100%;
-  min-width: 100%;
-}
-
-.carousel__slide img {
-  width: 100%;
-  height: 350px;
-  object-fit: cover;
-}
-
-.carousel__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2rem;
-  z-index: 10;
-}
-
-.carousel__nav--prev {
-  left: var(--spacing-md);
-}
-.carousel__nav--next {
-  right: var(--spacing-md);
-}
-
-.carousel__dots {
-  position: absolute;
-  bottom: var(--spacing-md);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: var(--spacing-sm);
-}
-
-.carousel__dot {
-  width: 10px;
-  height: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.carousel__dot.active {
-  background-color: var(--white);
-}
-
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 2000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.lightbox.active {
-  display: flex;
-}
-
-.lightbox__content img {
-  max-width: 90vw;
-  max-height: 90vh;
-}
-
-.lightbox__close {
-  position: absolute;
-  top: var(--spacing-lg);
-  right: var(--spacing-lg);
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border: none;
-  border-radius: 50%;
-  color: var(--white);
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.lightbox__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border: none;
-  border-radius: 50%;
-  color: var(--white);
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.lightbox__nav--prev {
-  left: var(--spacing-lg);
-}
-.lightbox__nav--next {
-  right: var(--spacing-lg);
-}
-
-.faq-list {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.faq-item {
-  background-color: var(--white);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--spacing-md);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-}
-
-.faq-question {
-  width: 100%;
-  padding: var(--spacing-md);
-  background: none;
-  border: none;
-  text-align: left;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.faq-question__icon {
-  font-size: 1.25rem;
-  transition: transform 0.2s ease;
-}
-
-.faq-item.active .faq-question__icon {
-  transform: rotate(45deg);
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.faq-item.active .faq-answer {
-  max-height: 300px;
-}
-
-.faq-answer__content {
-  padding: 0 var(--spacing-md) var(--spacing-md);
-  color: var(--medium-gray);
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
-}
-
-.contact-form {
-  background-color: var(--white);
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-  margin-bottom: var(--spacing-md);
-}
-
-.form-label {
-  display: block;
-  margin-bottom: var(--spacing-sm);
-  font-weight: 500;
-}
-
-.form-label .required {
-  color: var(--error);
-}
-
-.form-input,
-.form-textarea,
-.form-select {
-  width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: var(--radius-sm);
-  transition: border-color 0.2s ease;
-}
-
-.form-input:focus,
-.form-textarea:focus,
-.form-select:focus {
-  outline: none;
-  border-color: var(--primary-color);
-}
-
-.form-input.error,
-.form-textarea.error,
-.form-select.error {
-  border-color: var(--error);
-}
-
-.form-input.success,
-.form-textarea.success,
-.form-select.success {
-  border-color: var(--success);
-}
-
-.form-textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.form-error {
-  color: var(--error);
-  font-size: 0.85rem;
-  margin-top: 4px;
-  display: none;
-}
-
-.form-error.visible {
-  display: block;
-}
-
-.form-success {
-  background-color: var(--success);
-  color: var(--white);
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
-  text-align: center;
-  display: none;
-}
-
-.form-success.visible {
-  display: block;
-}
-
-.contact-info__item {
-  display: flex;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
-}
-
-.contact-info__icon {
-  width: 45px;
-  height: 45px;
-  background-color: var(--primary-color);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.contact-info__label {
-  font-size: 0.85rem;
-  color: var(--medium-gray);
-  margin-bottom: 2px;
-}
-
-.contact-info__text {
-  font-weight: 500;
-  margin: 0;
-}
-
-.social-links {
-  display: flex;
-  gap: var(--spacing-sm);
-}
-
-.social-link {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--light-gray);
-  border-radius: var(--radius-sm);
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-
-.social-link:hover {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-.map-container {
-  height: 250px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  background-color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  margin-top: var(--spacing-lg);
-}
-
-.locations-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-lg);
-}
-
-.location-card {
-  padding: var(--spacing-md);
-  background-color: var(--white);
-  border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.location-card__icon {
-  width: 40px;
-  height: 40px;
-  margin: 0 auto var(--spacing-sm);
-  background-color: var(--accent-color);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-}
-
-.location-card__city {
-  font-size: 1.1rem;
-  margin-bottom: 4px;
-}
-
-.location-card__address {
-  font-size: 0.85rem;
-  color: var(--medium-gray);
-  margin: 0;
-}
-
-.footer {
-  background-color: var(--black);
-  color: var(--white);
-  padding: var(--spacing-xl) 0 var(--spacing-lg);
-}
-
-.footer__grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-lg);
-}
-
-.footer__logo {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
-  color: var(--white);
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
-.footer__logo-icon {
-  width: 36px;
-  height: 36px;
-  background-color: var(--accent-color);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.footer__text {
-  color: #aaa;
-  font-size: 0.9rem;
-}
-
-.footer__title {
-  font-size: 1rem;
-  margin-bottom: var(--spacing-md);
-}
-
-.footer__links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-.footer__link {
-  color: #aaa;
-  font-size: 0.9rem;
-}
-
-.footer__link:hover {
-  color: var(--white);
-}
-
-.footer__bottom {
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid #444;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--spacing-md);
-}
-
-.footer__copyright {
-  color: #888;
-  font-size: 0.85rem;
-}
-
-.footer__socials {
-  display: flex;
-  gap: var(--spacing-sm);
-}
-
-.footer__social {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #333;
-  border-radius: var(--radius-sm);
-  color: var(--white);
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-
-.footer__social:hover {
-  background-color: var(--accent-color);
-}
-
-.animate-on-scroll {
-  opacity: 0;
-  transform: scale(0.9);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
-}
-
-.animate-on-scroll.visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.skip-link {
-  position: absolute;
-  top: -100%;
-  left: var(--spacing-md);
-  background-color: var(--primary-color);
-  color: var(--white);
-  padding: var(--spacing-md);
-  z-index: 9999;
-  border-radius: var(--radius-sm);
-}
-
-.skip-link:focus {
-  top: var(--spacing-md);
-}
-
-@media (max-width: 992px) {
-  .hero__inner {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .hero__image {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .spotlight {
-    grid-template-columns: 1fr;
-  }
-
-  .spotlight--reverse {
-    direction: ltr;
-  }
-
-  .steps {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  .values-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .pricing-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  .pricing-card--featured {
-    transform: none;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .gallery-item--large {
-    grid-column: span 1;
-    grid-row: span 1;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .locations-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer__grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .timeline::before {
-    left: 20px;
-  }
-
-  .timeline__item,
-  .timeline__item:nth-child(even) {
-    padding-left: 50px;
-    padding-right: 0;
-    justify-content: flex-start;
-  }
-
-  .timeline__content,
-  .timeline__item:nth-child(even) .timeline__content {
-    margin-left: 0;
-    margin-right: 0;
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
-  }
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  .section {
-    padding: var(--spacing-lg) 0;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    max-width: 280px;
-    height: 100vh;
-    background-color: var(--white);
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-    padding: 80px var(--spacing-md) var(--spacing-md);
-    transition: right 0.3s ease;
-  }
-
-  .nav.active {
-    right: 0;
-  }
-
-  .nav__list {
-    flex-direction: column;
-    gap: var(--spacing-md);
-  }
-
-  .hero {
-    padding: 100px 0 var(--spacing-lg);
-  }
-
-  .hero__title {
-    font-size: 1.75rem;
-  }
-
-  .hero__buttons {
-    flex-direction: column;
-  }
-
-  .hero__stats {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .video-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer__grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer__logo {
-    justify-content: center;
-  }
-
-  .footer__links {
-    align-items: center;
-  }
-
-  .footer__bottom {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .cta__buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .carousel__slide img {
-    height: 220px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 var(--spacing-sm);
-  }
-
-  .btn--lg {
-    padding: 12px 24px;
-    font-size: 1rem;
-  }
-}
-
-/* =====================================================
-   AUTHENTICATION STYLES - Assignment 4
-   Student ID: 20034038
-   ===================================================== */
-
-.auth-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 100px var(--spacing-md) var(--spacing-xl);
-  background: linear-gradient(
-    135deg,
-    var(--primary-color) 0%,
-    var(--primary-dark) 100%
-  );
-}
-
-.auth-card {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  padding: var(--spacing-xl);
-  width: 100%;
-  max-width: 480px;
-}
-
-.auth-card__header {
-  text-align: center;
-  margin-bottom: var(--spacing-lg);
-}
-
-.auth-card__title {
-  font-size: 1.75rem;
-  margin-bottom: var(--spacing-sm);
-}
-
-.auth-card__subtitle {
-  color: var(--medium-gray);
-}
-
-.auth-card__footer {
-  text-align: center;
-  margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid #eee;
-}
-
-.auth-card__divider {
-  text-align: center;
-  margin: var(--spacing-lg) 0;
-  position: relative;
-}
-
-.auth-card__divider::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: #eee;
-}
-
-.auth-card__divider span {
-  background: var(--white);
-  padding: 0 var(--spacing-md);
-  position: relative;
-  color: var(--medium-gray);
-  font-size: 0.875rem;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-md);
-}
-
-@media (max-width: 576px) {
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-}
-
-.form-hint {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--medium-gray);
-  margin-top: 4px;
-}
-
-.form-checkbox {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-sm);
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.form-checkbox input {
-  margin-top: 3px;
-}
-
-.form-group--flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.form-link {
-  font-size: 0.9rem;
-  color: var(--primary-color);
-}
-
-.demo-accounts {
-  background: var(--light-gray);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md);
-  font-size: 0.85rem;
-}
-
-.demo-account {
-  padding: var(--spacing-sm) 0;
-  color: var(--medium-gray);
-}
-
-.demo-account:last-child {
-  border-top: 1px dashed #ddd;
-  margin-top: var(--spacing-sm);
-  padding-top: var(--spacing-md);
-}
-
-/* =====================================================
-   ALERT STYLES
-   ===================================================== */
-
-.alert {
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--spacing-lg);
-  position: relative;
-}
-
-.alert--success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-.alert--error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-
-.alert--warning {
-  background-color: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffeeba;
-}
-
-.alert--info {
-  background-color: #d1ecf1;
-  color: #0c5460;
-  border: 1px solid #bee5eb;
-}
-
-.alert__close {
-  position: absolute;
-  top: var(--spacing-sm);
-  right: var(--spacing-md);
-  background: none;
-  border: none;
-  font-size: 1.25rem;
-  cursor: pointer;
-  opacity: 0.5;
-}
-
-.alert__close:hover {
-  opacity: 1;
-}
-
-/* =====================================================
-   DASHBOARD STYLES
-   ===================================================== */
-
-.dashboard-body {
-  background-color: #f8f9fa;
-}
-
-.dashboard-header {
-  background: var(--white);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
-
-.dashboard-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-md);
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.dashboard-nav {
-  display: flex;
-  gap: var(--spacing-sm);
-}
-
-.dashboard-nav__link {
-  padding: var(--spacing-sm) var(--spacing-md);
-  color: var(--dark-gray);
-  text-decoration: none;
-  border-radius: var(--radius-sm);
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.dashboard-nav__link:hover {
-  background-color: var(--light-gray);
-  text-decoration: none;
-}
-
-.dashboard-nav__link.active {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-.dashboard-nav__link .badge {
-  background: var(--error);
-  color: white;
-  padding: 2px 6px;
-  border-radius: 10px;
-  font-size: 0.75rem;
-  margin-left: 4px;
-}
-
-.dashboard-user {
-  position: relative;
-  cursor: pointer;
-}
-
-.dashboard-user__name {
-  font-weight: 500;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: var(--light-gray);
-  border-radius: var(--radius-sm);
-}
-
-.dashboard-user__role {
-  font-size: 0.75rem;
-  background: var(--accent-color);
-  color: white;
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
-  margin-right: var(--spacing-sm);
-}
-
-.dashboard-user__dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: var(--white);
-  border-radius: var(--radius-md);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: var(--spacing-sm);
-  min-width: 150px;
-  display: none;
-  z-index: 100;
-}
-
-.dashboard-user:hover .dashboard-user__dropdown {
-  display: block;
-}
-
-.dashboard-user__dropdown a {
-  display: block;
-  padding: var(--spacing-sm) var(--spacing-md);
-  color: var(--dark-gray);
-  text-decoration: none;
-  border-radius: var(--radius-sm);
-}
-
-.dashboard-user__dropdown a:hover {
-  background: var(--light-gray);
-}
-
-.dashboard-main {
-  padding: 100px var(--spacing-md) var(--spacing-xl);
-  min-height: calc(100vh - 60px);
-}
-
-.dashboard-welcome {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--primary-dark)
-  );
-  color: var(--white);
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--spacing-lg);
-}
-
-.dashboard-welcome h1 {
-  color: var(--white);
-  margin-bottom: var(--spacing-sm);
-}
-
-.dashboard-welcome p {
-  opacity: 0.9;
-  margin: 0;
-}
-
-.dashboard-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
-}
-
-@media (max-width: 992px) {
-  .dashboard-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 576px) {
-  .dashboard-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .dashboard-welcome {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--spacing-md);
-  }
-
-  .dashboard-nav {
-    display: none;
-  }
-}
-
-.stat-card {
-  background: var(--white);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-lg);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.stat-card--primary {
-  background: linear-gradient(135deg, var(--accent-color), #c9940f);
-  color: var(--white);
-}
-
-.stat-card--primary .stat-card__value {
-  color: var(--white);
-}
-
-.stat-card__icon {
-  font-size: 2rem;
-}
-
-.stat-card__value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-.stat-card__label {
-  font-size: 0.875rem;
-  color: var(--medium-gray);
-  margin: 0;
-}
-
-.stat-card--primary .stat-card__label {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-lg);
-}
-
-@media (max-width: 992px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.dashboard-card {
-  background: var(--white);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-lg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.dashboard-card__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-lg);
-}
-
-.dashboard-card__header h2 {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.dashboard-card__link {
-  font-size: 0.875rem;
-  color: var(--primary-color);
-}
-
-.empty-state {
-  text-align: center;
-  padding: var(--spacing-xl);
-}
-
-.empty-state__icon {
-  font-size: 3rem;
-  margin-bottom: var(--spacing-md);
-}
-
-.empty-state h3 {
-  margin-bottom: var(--spacing-sm);
-}
-
-.empty-state p {
-  color: var(--medium-gray);
-  margin-bottom: var(--spacing-lg);
-}
-
-/* Transaction List */
-.transaction-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-.transaction-item {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md);
-  border-radius: var(--radius-sm);
-  background: var(--light-gray);
-}
-
-.transaction-item__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-}
-
-.transaction-item__details {
-  flex: 1;
-}
-
-.transaction-item__title {
-  font-weight: 500;
-  margin: 0 0 4px 0;
-  font-size: 0.95rem;
-}
-
-.transaction-item__meta {
-  font-size: 0.8rem;
-  color: var(--medium-gray);
-  margin: 0;
-}
-
-.transaction-item__amount {
-  font-weight: 600;
-  color: var(--error);
-}
-
-/* Category List */
-.category-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-}
-
-.category-item__header {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-sm);
-}
-
-.category-item__icon {
-  font-size: 1.25rem;
-}
-
-.category-item__name {
-  flex: 1;
-  font-weight: 500;
-}
-
-.category-item__amount {
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.category-item__bar {
-  height: 8px;
-  background: var(--light-gray);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.category-item__progress {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 0.3s ease;
-}
-
-/* Quick Actions */
-.quick-actions__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-md);
-}
-
-@media (max-width: 768px) {
-  .quick-actions__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.quick-action {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-lg);
-  background: var(--white);
-  border-radius: var(--radius-md);
-  text-decoration: none;
-  color: var(--dark-gray);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.2s ease;
-}
-
-.quick-action:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  text-decoration: none;
-}
-
-.quick-action__icon {
-  font-size: 2rem;
-  margin-bottom: var(--spacing-sm);
-}
-
-.quick-action__label {
-  font-weight: 500;
-}
-
-.dashboard-footer {
-  text-align: center;
-  padding: var(--spacing-lg);
-  color: var(--medium-gray);
-  font-size: 0.875rem;
-}
-
-/* =====================================================
-   FORM CARD & PAGE STYLES
-   ===================================================== */
-
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-lg);
-}
-
-.page-header h1 {
-  margin: 0;
-}
-
-.page-header__count {
-  color: var(--medium-gray);
-}
-
-.form-card {
-  background: var(--white);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-xl);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  max-width: 700px;
-}
-
-.form-actions {
-  display: flex;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid #eee;
-}
-
-.filter-card {
-  background: var(--white);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.filter-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-md);
-  align-items: flex-end;
-}
-
-.filter-form__group {
-  flex: 1;
-  min-width: 150px;
-}
-
-.filter-form__group .form-label {
-  font-size: 0.8rem;
-  margin-bottom: 4px;
-}
-
-.filter-form__actions {
-  display: flex;
-  gap: var(--spacing-sm);
-}
-
-.summary-bar {
-  display: flex;
-  justify-content: space-between;
-  padding: var(--spacing-md);
-  background: var(--light-gray);
-  border-radius: var(--radius-sm);
-  margin-bottom: var(--spacing-md);
-}
-
-/* =====================================================
-   DATA TABLE STYLES
-   ===================================================== */
-
-.table-responsive {
-  overflow-x: auto;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--white);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.data-table th,
-.data-table td {
-  padding: var(--spacing-md);
-  text-align: left;
-  border-bottom: 1px solid #eee;
-}
-
-.data-table th {
-  background: var(--primary-color);
-  color: var(--white);
-  font-weight: 600;
-}
-
-.data-table tbody tr:hover {
-  background: var(--light-gray);
-}
-
-.data-table tfoot td {
-  font-weight: 600;
-  background: var(--light-gray);
-}
-
-.data-table--compact th,
-.data-table--compact td {
-  padding: var(--spacing-sm) var(--spacing-md);
-  font-size: 0.9rem;
-}
-
-.amount-cell {
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.actions-cell {
-  white-space: nowrap;
-}
-
-.inline-form {
-  display: inline-block;
-  margin-right: var(--spacing-sm);
-}
-
-.category-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-/* =====================================================
-   ROLE & STATUS BADGES
-   ===================================================== */
-
-.role-badge,
-.status-badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.role-badge--admin {
-  background: #e74c3c;
-  color: white;
-}
-
-.role-badge--member {
-  background: #3498db;
-  color: white;
-}
-
-.role-badge--user {
-  background: #95a5a6;
-  color: white;
-}
-
-.status-badge--active,
-.status-badge--new {
-  background: #d4edda;
-  color: #155724;
-}
-
-.status-badge--inactive,
-.status-badge--read {
-  background: #fff3cd;
-  color: #856404;
-}
-
-.status-badge--suspended,
-.status-badge--archived {
-  background: #f8d7da;
-  color: #721c24;
-}
-
-.status-badge--replied {
-  background: #d1ecf1;
-  color: #0c5460;
-}
-
-/* =====================================================
-   ADMIN SPECIFIC STYLES
-   ===================================================== */
-
-.admin-header {
-  background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
-}
-
-.admin-header .logo,
-.admin-header .logo:hover {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.admin-header .dashboard-nav__link {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.admin-header .dashboard-nav__link:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.admin-header .dashboard-nav__link.active {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.admin-header .dashboard-user__name {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
-.admin-logo-icon {
-  background: var(--accent-color) !important;
-}
-
-.admin-welcome {
-  background: linear-gradient(135deg, #2c3e50, #34495e);
-}
-
-.stat-card--admin {
-  border-left: 4px solid var(--primary-color);
-}
-
-.activity-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-}
-
-.activity-item {
-  display: flex;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md);
-  background: var(--light-gray);
-  border-radius: var(--radius-sm);
-}
-
-.activity-item__icon {
-  font-size: 1.5rem;
-}
-
-.activity-item__action {
-  margin: 0 0 4px 0;
-  font-size: 0.95rem;
-}
-
-.activity-item__desc {
-  font-size: 0.85rem;
-  color: var(--medium-gray);
-  margin: 0 0 4px 0;
-}
-
-.activity-item__meta {
-  font-size: 0.8rem;
-  color: var(--medium-gray);
-  margin: 0;
-}
-
-/* Messages */
-.messages-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-}
-
-.message-card {
-  background: var(--white);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-lg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border-left: 4px solid var(--medium-gray);
-}
-
-.message-card--new {
-  border-left-color: var(--accent-color);
-  background: #fffbf0;
-}
-
-.message-card--read {
-  border-left-color: var(--primary-color);
-}
-
-.message-card--replied {
-  border-left-color: var(--success);
-}
-
-.message-card__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: var(--spacing-md);
-}
-
-.message-card__sender strong {
-  font-size: 1.1rem;
-}
-
-.message-card__email {
-  font-size: 0.85rem;
-  color: var(--medium-gray);
-}
-
-.message-card__date {
-  font-size: 0.8rem;
-  color: var(--medium-gray);
-  margin-left: var(--spacing-sm);
-}
-
-.message-card__subject {
-  margin-bottom: var(--spacing-md);
-  color: var(--primary-color);
-}
-
-.message-card__body {
-  background: var(--light-gray);
-  padding: var(--spacing-md);
-  border-radius: var(--radius-sm);
-  margin-bottom: var(--spacing-md);
-}
-
-.message-card__phone {
-  font-size: 0.9rem;
-  color: var(--medium-gray);
-  margin-bottom: var(--spacing-md);
-}
-
-.message-card__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
-}
-
-/* =====================================================
-   BUTTON VARIANTS
-   ===================================================== */
-
-.btn--danger {
-  background-color: var(--error);
-  color: var(--white);
-  border-color: var(--error);
-}
-
-.btn--danger:hover {
-  background-color: #c82333;
-}
-
-.form-select--sm {
-  padding: 6px 10px;
-  font-size: 0.8rem;
-}
-
-/* =====================================================
-   LEGAL CONTENT STYLES
-   ===================================================== */
-
-.legal-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.legal-content__updated {
-  color: var(--medium-gray);
-  margin-bottom: var(--spacing-xl);
-}
-
-.legal-section {
-  margin-bottom: var(--spacing-xl);
-}
-
-.legal-section h2 {
-  color: var(--primary-color);
-  margin-bottom: var(--spacing-md);
-  padding-bottom: var(--spacing-sm);
-  border-bottom: 2px solid var(--light-gray);
-}
-
-.legal-section h3 {
-  font-size: 1.1rem;
-  margin-top: var(--spacing-lg);
-  margin-bottom: var(--spacing-sm);
-}
-
-.legal-section ul {
-  list-style: disc;
-  padding-left: var(--spacing-lg);
-  margin-bottom: var(--spacing-md);
-}
-
-.legal-section li {
-  margin-bottom: var(--spacing-sm);
-}
-
-.legal-section--highlight {
-  background: var(--light-gray);
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-md);
-  border-left: 4px solid var(--primary-color);
-}
-
-.legal-section--highlight h2 {
-  border: none;
-  padding: 0;
-}
-
-/* =====================================================
-   NAV DROPDOWN STYLES
-   ===================================================== */
-
-.nav__dropdown {
-  position: relative;
-}
-
-.nav__link--user {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
-
-.nav__user-icon {
-  font-size: 1.25rem;
-}
-
-.nav__dropdown-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: var(--white);
-  border-radius: var(--radius-md);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  padding: var(--spacing-sm);
-  min-width: 180px;
-  display: none;
-  z-index: 100;
-}
-
-.nav__dropdown:hover .nav__dropdown-menu {
-  display: block;
-}
-
-.nav__dropdown-link {
-  display: block;
-  padding: var(--spacing-sm) var(--spacing-md);
-  color: var(--dark-gray);
-  text-decoration: none;
-  border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-}
-
-.nav__dropdown-link:hover {
-  background: var(--light-gray);
-  text-decoration: none;
-}
-
-.nav__dropdown-link--danger {
-  color: var(--error);
-}
-
-.nav__dropdown-divider {
-  margin: var(--spacing-sm) 0;
-  border: none;
-  border-top: 1px solid #eee;
-}
-
-/* =====================================================
-   RESPONSIVE DASHBOARD
-   ===================================================== */
-
-@media (max-width: 768px) {
-  .dashboard-header__inner {
-    flex-wrap: wrap;
-  }
-
-  .page-header {
-    flex-direction: column;
-    gap: var(--spacing-md);
-    align-items: flex-start;
-  }
-
-  .filter-form {
-    flex-direction: column;
-  }
-
-  .filter-form__group {
-    width: 100%;
-  }
-
-  .form-actions {
-    flex-direction: column;
-  }
-
-  .data-table thead {
-    display: none;
-  }
-
-  .data-table tbody tr {
-    display: block;
-    margin-bottom: var(--spacing-md);
-    border: 1px solid #eee;
-    border-radius: var(--radius-md);
-  }
-
-  .data-table td {
-    display: flex;
-    justify-content: space-between;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: none;
-    border-bottom: 1px solid #eee;
-  }
-
-  .data-table td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: var(--dark-gray);
-  }
-
-  .data-table td:last-child {
-    border-bottom: none;
-  }
-}
-
-/* ===========================================
-   Budget Management Styles
-   =========================================== */
-
-.budget-grid {
-  margin-top: var(--spacing-xl);
-}
-
-.section-title {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--primary-color);
-  margin-bottom: var(--spacing-lg);
-}
-
-.budget-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--spacing-lg);
-}
-
-.budget-card {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  padding: var(--spacing-lg);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  border: 2px solid transparent;
-}
-
-.budget-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-
-.budget-card--warning {
-  border-color: #ffc107;
-  background: linear-gradient(135deg, #fff 0%, #fffcf0 100%);
-}
-
-.budget-card--danger {
-  border-color: #dc3545;
-  background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
-}
-
-.budget-card__header {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
-}
-
-.budget-card__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  color: #fff;
-}
-
-.budget-card__title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--dark-gray);
-  flex: 1;
-}
-
-.budget-alert {
-  font-size: 1.25rem;
-}
-
-.budget-card__body {
-  margin-bottom: var(--spacing-md);
-}
-
-.budget-card__empty {
-  color: var(--medium-gray);
-  font-style: italic;
-  text-align: center;
-  padding: var(--spacing-md) 0;
-}
-
-.budget-progress {
-  padding: var(--spacing-sm) 0;
-}
-
-.budget-progress__bar {
-  height: 12px;
-  background: #e9ecef;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: var(--spacing-sm);
-}
-
-.budget-progress__fill {
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--accent-color),
-    var(--secondary-color)
-  );
-  border-radius: 6px;
-  transition: width 0.5s ease;
-}
-
-.budget-progress__fill--warning {
-  background: linear-gradient(90deg, #ffc107, #ffb300);
-}
-
-.budget-progress__fill--danger {
-  background: linear-gradient(90deg, #dc3545, #c82333);
-}
-
-.budget-progress__text {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  color: var(--dark-gray);
-}
-
-.budget-progress__percent {
-  font-size: 0.85rem;
-  color: var(--medium-gray);
-  margin-top: var(--spacing-xs);
-}
-
-.budget-card__footer {
-  display: flex;
-  gap: var(--spacing-sm);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid #eee;
-}
-
-.inline-form {
-  display: inline;
-}
-
-/* ===========================================
-   Modal Styles
-   =========================================== */
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 0.3s ease,
-    visibility 0.3s ease;
-}
-
-.modal--open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-}
-
-.modal__content {
-  position: relative;
-  background: #fff;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  padding: var(--spacing-xl);
-  max-width: 450px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
-}
-
-.modal--open .modal__content {
-  transform: scale(1);
-}
-
-.modal__close {
-  position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  width: 32px;
-  height: 32px;
-  border: none;
-  background: #f0f0f0;
-  border-radius: 50%;
-  font-size: 1.25rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease;
-}
-
-.modal__close:hover {
-  background: #e0e0e0;
-}
-
-.modal__title {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--primary-color);
-  margin-bottom: var(--spacing-lg);
-}
-
-.form-static {
-  padding: var(--spacing-sm) 0;
-  font-weight: 600;
-  color: var(--dark-gray);
-}
-
-.form-hint {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--medium-gray);
-  margin-top: var(--spacing-xs);
-}
-
-.stat-card--danger {
-  border-color: #dc3545;
-  background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
-}
-
-.stat-card--danger .stat-card__value {
-  color: #dc3545;
-}
-
-/* Budget responsive adjustments */
-@media (max-width: 768px) {
-  .budget-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .budget-card__footer {
-    flex-direction: column;
-  }
-
-  .budget-card__footer .btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
+<?php
+/**
+ * Smart Expense Tracking System - Budget Management
+ * Student ID: 20034038
+ * Assessment 4 - ICT726 Web Development
+ * 
+ * Manage monthly budgets per category with spending tracking
+ * and alert thresholds
+ */
+
+$pageTitle = 'Budgets | Smart Expense Tracker';
+$pageDescription = 'Set and manage your monthly budgets by category.';
+
+require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/../includes/session.php';
+
+// Require authentication
+requireLogin();
+
+$userId = $_SESSION['user_id'];
+$user = getCurrentUser();
+$pdo = getDBConnection();
+
+// Get current month/year or from query params
+$currentMonth = isset($_GET['month']) ? intval($_GET['month']) : intval(date('n'));
+$currentYear = isset($_GET['year']) ? intval($_GET['year']) : intval(date('Y'));
+
+// Validate month/year
+if ($currentMonth < 1 || $currentMonth > 12) $currentMonth = intval(date('n'));
+if ($currentYear < 2020 || $currentYear > 2030) $currentYear = intval(date('Y'));
+
+$monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+               'July', 'August', 'September', 'October', 'November', 'December'];
+
+// Handle form submissions
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
+        setFlashMessage('error', 'Invalid request. Please try again.');
+        redirect(SITE_URL . '/dashboard/budgets.php');
+    }
+    
+    $action = $_POST['action'] ?? '';
+    
+    if ($action === 'save_budget') {
+        $categoryId = intval($_POST['category_id'] ?? 0);
+        $budgetAmount = floatval($_POST['budget_amount'] ?? 0);
+        $alertThreshold = intval($_POST['alert_threshold'] ?? 80);
+        $budgetMonth = intval($_POST['month'] ?? $currentMonth);
+        $budgetYear = intval($_POST['year'] ?? $currentYear);
+        
+        if ($categoryId > 0 && $budgetAmount > 0) {
+            // Check if budget exists for this category/month/year
+            $stmt = $pdo->prepare("
+                SELECT budget_id FROM budgets 
+                WHERE user_id = ? AND category_id = ? AND month = ? AND year = ?
+            ");
+            $stmt->execute([$userId, $categoryId, $budgetMonth, $budgetYear]);
+            $existing = $stmt->fetch();
+            
+            if ($existing) {
+                // Update existing budget
+                $stmt = $pdo->prepare("
+                    UPDATE budgets 
+                    SET budget_amount = ?, alert_threshold = ?, updated_at = CURRENT_TIMESTAMP
+                    WHERE budget_id = ?
+                ");
+                $stmt->execute([$budgetAmount, $alertThreshold, $existing['budget_id']]);
+                setFlashMessage('success', 'Budget updated successfully.');
+            } else {
+                // Insert new budget
+                $stmt = $pdo->prepare("
+                    INSERT INTO budgets (user_id, category_id, budget_amount, month, year, alert_threshold)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                ");
+                $stmt->execute([$userId, $categoryId, $budgetAmount, $budgetMonth, $budgetYear, $alertThreshold]);
+                setFlashMessage('success', 'Budget created successfully.');
+            }
+            
+            logActivity('SET_BUDGET', 'Set budget for category ID: ' . $categoryId);
+        } else {
+            setFlashMessage('error', 'Please enter a valid budget amount.');
+        }
+    } elseif ($action === 'delete_budget') {
+        $budgetId = intval($_POST['budget_id'] ?? 0);
+        
+        if ($budgetId > 0) {
+            $stmt = $pdo->prepare("DELETE FROM budgets WHERE budget_id = ? AND user_id = ?");
+            $stmt->execute([$budgetId, $userId]);
+            setFlashMessage('success', 'Budget removed successfully.');
+            logActivity('DELETE_BUDGET', 'Deleted budget ID: ' . $budgetId);
+        }
+    }
+    
+    redirect(SITE_URL . '/dashboard/budgets.php?month=' . $currentMonth . '&year=' . $currentYear);
+}
+
+// Get categories
+$categories = getCategories($userId);
+
+// Get budgets for current month/year with spending
+$stmt = $pdo->prepare("
+    SELECT 
+        c.category_id,
+        c.category_name,
+        c.category_icon,
+        c.category_color,
+        b.budget_id,
+        b.budget_amount,
+        b.alert_threshold,
+        COALESCE(SUM(e.amount), 0) as spent
+    FROM expense_categories c
+    LEFT JOIN budgets b ON c.category_id = b.category_id 
+        AND b.user_id = ? AND b.month = ? AND b.year = ?
+    LEFT JOIN expenses e ON c.category_id = e.category_id 
+        AND e.user_id = ? 
+        AND EXTRACT(MONTH FROM e.expense_date) = ? 
+        AND EXTRACT(YEAR FROM e.expense_date) = ?
+    WHERE c.is_default = TRUE OR c.user_id = ?
+    GROUP BY c.category_id, c.category_name, c.category_icon, c.category_color, 
+             b.budget_id, b.budget_amount, b.alert_threshold
+    ORDER BY c.category_name
+");
+$stmt->execute([$userId, $currentMonth, $currentYear, $userId, $currentMonth, $currentYear, $userId]);
+$budgetData = $stmt->fetchAll();
+
+// Calculate totals
+$totalBudget = 0;
+$totalSpent = 0;
+foreach ($budgetData as $item) {
+    if ($item['budget_amount']) {
+        $totalBudget += $item['budget_amount'];
+    }
+    $totalSpent += $item['spent'];
+}
+
+$csrfToken = generateCSRFToken();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title><?php echo htmlspecialchars($pageTitle); ?></title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/css/styles.css">
+</head>
+<body class="dashboard-body">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header class="dashboard-header" role="banner">
+        <div class="dashboard-header__inner">
+            <a href="<?php echo SITE_URL; ?>/index.php" class="logo" aria-label="Smart Expense Tracker Home">
+                <span class="logo__icon" aria-hidden="true">$</span>
+                <span>ExpenseTracker</span>
+            </a>
+            
+            <nav class="dashboard-nav" role="navigation" aria-label="Dashboard navigation">
+                <a href="<?php echo SITE_URL; ?>/dashboard/" class="dashboard-nav__link">Dashboard</a>
+                <a href="<?php echo SITE_URL; ?>/dashboard/expenses.php" class="dashboard-nav__link">Expenses</a>
+                <a href="<?php echo SITE_URL; ?>/dashboard/add-expense.php" class="dashboard-nav__link">Add Expense</a>
+                <a href="<?php echo SITE_URL; ?>/dashboard/budgets.php" class="dashboard-nav__link active">Budgets</a>
+                <a href="<?php echo SITE_URL; ?>/dashboard/reports.php" class="dashboard-nav__link">Reports</a>
+            </nav>
+            
+            <div class="dashboard-user">
+                <span class="dashboard-user__name"><?php echo htmlspecialchars($user['first_name']); ?></span>
+                <div class="dashboard-user__dropdown">
+                    <a href="<?php echo SITE_URL; ?>/dashboard/profile.php">Profile</a>
+                    <a href="<?php echo SITE_URL; ?>/auth/logout.php">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main id="main-content" class="dashboard-main">
+        <div class="container">
+            <?php echo displayFlashMessage(); ?>
+            
+            <div class="page-header">
+                <h1>Budget Management</h1>
+            </div>
+            
+            <!-- Month Navigation -->
+            <div class="filter-card">
+                <form method="GET" action="" class="filter-form">
+                    <div class="filter-form__group">
+                        <label for="month" class="form-label">Month</label>
+                        <select id="month" name="month" class="form-select">
+                            <?php foreach ($monthNames as $idx => $name): ?>
+                                <option value="<?php echo $idx + 1; ?>" 
+                                        <?php echo ($currentMonth == $idx + 1) ? 'selected' : ''; ?>>
+                                    <?php echo $name; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-form__group">
+                        <label for="year" class="form-label">Year</label>
+                        <select id="year" name="year" class="form-select">
+                            <?php for ($y = date('Y') - 2; $y <= date('Y') + 1; $y++): ?>
+                                <option value="<?php echo $y; ?>" 
+                                        <?php echo ($currentYear == $y) ? 'selected' : ''; ?>>
+                                    <?php echo $y; ?>
+                                </option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-form__actions">
+                        <button type="submit" class="btn btn--primary btn--sm">View Month</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Budget Summary -->
+            <section class="dashboard-stats" aria-label="Budget statistics">
+                <div class="stat-card stat-card--primary">
+                    <div class="stat-card__icon">💵</div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__value"><?php echo formatCurrency($totalBudget); ?></h3>
+                        <p class="stat-card__label">Total Budget</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card__icon">💰</div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__value"><?php echo formatCurrency($totalSpent); ?></h3>
+                        <p class="stat-card__label">Total Spent</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card <?php echo ($totalBudget > 0 && $totalSpent > $totalBudget) ? 'stat-card--danger' : ''; ?>">
+                    <div class="stat-card__icon">📊</div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__value"><?php echo formatCurrency(max(0, $totalBudget - $totalSpent)); ?></h3>
+                        <p class="stat-card__label">Remaining</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card__icon">📅</div>
+                    <div class="stat-card__content">
+                        <h3 class="stat-card__value"><?php echo $monthNames[$currentMonth - 1]; ?></h3>
+                        <p class="stat-card__label"><?php echo $currentYear; ?></p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Budget Cards by Category -->
+            <section class="budget-grid" aria-labelledby="budgets-title">
+                <h2 id="budgets-title" class="section-title">Category Budgets</h2>
+                
+                <div class="budget-cards">
+                    <?php foreach ($budgetData as $item): ?>
+                        <?php 
+                        $hasBudget = !empty($item['budget_amount']);
+                        $spent = floatval($item['spent']);
+                        $budget = floatval($item['budget_amount'] ?? 0);
+                        $threshold = intval($item['alert_threshold'] ?? 80);
+                        $percentage = $budget > 0 ? min(100, ($spent / $budget) * 100) : 0;
+                        $isOverBudget = $budget > 0 && $spent > $budget;
+                        $isNearThreshold = $budget > 0 && $percentage >= $threshold && !$isOverBudget;
+                        ?>
+                        <div class="budget-card <?php echo $isOverBudget ? 'budget-card--danger' : ($isNearThreshold ? 'budget-card--warning' : ''); ?>">
+                            <div class="budget-card__header">
+                                <span class="budget-card__icon" style="background-color: <?php echo htmlspecialchars($item['category_color']); ?>">
+                                    <?php echo $item['category_icon']; ?>
+                                </span>
+                                <h3 class="budget-card__title"><?php echo htmlspecialchars($item['category_name']); ?></h3>
+                                <?php if ($isOverBudget): ?>
+                                    <span class="budget-alert budget-alert--danger" title="Over budget!">⚠️</span>
+                                <?php elseif ($isNearThreshold): ?>
+                                    <span class="budget-alert budget-alert--warning" title="Approaching budget limit">⚡</span>
+                                <?php endif; ?>
+                            </div>
+                            
+                            <div class="budget-card__body">
+                                <?php if ($hasBudget): ?>
+                                    <div class="budget-progress">
+                                        <div class="budget-progress__bar">
+                                            <div class="budget-progress__fill <?php echo $isOverBudget ? 'budget-progress__fill--danger' : ($isNearThreshold ? 'budget-progress__fill--warning' : ''); ?>" 
+                                                 style="width: <?php echo min(100, $percentage); ?>%"></div>
+                                        </div>
+                                        <div class="budget-progress__text">
+                                            <span><?php echo formatCurrency($spent); ?> spent</span>
+                                            <span><?php echo formatCurrency($budget); ?> budget</span>
+                                        </div>
+                                        <p class="budget-progress__percent">
+                                            <?php echo number_format($percentage, 0); ?>% used
+                                            <?php if ($budget > $spent): ?>
+                                                • <?php echo formatCurrency($budget - $spent); ?> left
+                                            <?php else: ?>
+                                                • <?php echo formatCurrency($spent - $budget); ?> over
+                                            <?php endif; ?>
+                                        </p>
+                                    </div>
+                                <?php else: ?>
+                                    <p class="budget-card__empty">
+                                        <?php if ($spent > 0): ?>
+                                            <?php echo formatCurrency($spent); ?> spent (no budget set)
+                                        <?php else: ?>
+                                            No budget set
+                                        <?php endif; ?>
+                                    </p>
+                                <?php endif; ?>
+                            </div>
+                            
+                            <div class="budget-card__footer">
+                                <button type="button" class="btn btn--sm btn--secondary" 
+                                        onclick="openBudgetModal(<?php echo $item['category_id']; ?>, '<?php echo htmlspecialchars($item['category_name']); ?>', <?php echo $budget; ?>, <?php echo $threshold; ?>)">
+                                    <?php echo $hasBudget ? '✏️ Edit' : '➕ Set Budget'; ?>
+                                </button>
+                                <?php if ($hasBudget): ?>
+                                    <form method="POST" action="" class="inline-form" 
+                                          onsubmit="return confirm('Remove this budget?');">
+                                        <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
+                                        <input type="hidden" name="action" value="delete_budget">
+                                        <input type="hidden" name="budget_id" value="<?php echo $item['budget_id']; ?>">
+                                        <button type="submit" class="btn btn--sm btn--outline">🗑️ Remove</button>
+                                    </form>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Budget Modal -->
+    <div id="budgetModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal__overlay" onclick="closeBudgetModal()"></div>
+        <div class="modal__content">
+            <button type="button" class="modal__close" onclick="closeBudgetModal()" aria-label="Close modal">&times;</button>
+            <h2 id="modalTitle" class="modal__title">Set Budget</h2>
+            
+            <form method="POST" action="" class="form">
+                <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
+                <input type="hidden" name="action" value="save_budget">
+                <input type="hidden" name="month" value="<?php echo $currentMonth; ?>">
+                <input type="hidden" name="year" value="<?php echo $currentYear; ?>">
+                <input type="hidden" id="modal_category_id" name="category_id" value="">
+                
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <p id="modal_category_name" class="form-static"></p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal_budget_amount" class="form-label">Budget Amount ($)</label>
+                    <input type="number" id="modal_budget_amount" name="budget_amount" 
+                           class="form-input" step="0.01" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal_alert_threshold" class="form-label">Alert Threshold (%)</label>
+                    <input type="number" id="modal_alert_threshold" name="alert_threshold" 
+                           class="form-input" min="50" max="100" value="80">
+                    <small class="form-hint">You'll see a warning when spending reaches this percentage.</small>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn--secondary" onclick="closeBudgetModal()">Cancel</button>
+                    <button type="submit" class="btn btn--primary">Save Budget</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <footer class="dashboard-footer">
+        <p>&copy; <?php echo date('Y'); ?> Smart Expense Tracker | Student ID: 20034038</p>
+    </footer>
+    
+    <script src="<?php echo SITE_URL; ?>/js/main.js"></script>
+    <script>
+        function openBudgetModal(categoryId, categoryName, budget, threshold) {
+            document.getElementById('modal_category_id').value = categoryId;
+            document.getElementById('modal_category_name').textContent = categoryName;
+            document.getElementById('modal_budget_amount').value = budget > 0 ? budget : '';
+            document.getElementById('modal_alert_threshold').value = threshold || 80;
+            document.getElementById('budgetModal').classList.add('modal--open');
+            document.getElementById('budgetModal').setAttribute('aria-hidden', 'false');
+            document.getElementById('modal_budget_amount').focus();
+        }
+        
+        function closeBudgetModal() {
+            document.getElementById('budgetModal').classList.remove('modal--open');
+            document.getElementById('budgetModal').setAttribute('aria-hidden', 'true');
+        }
+        
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeBudgetModal();
+            }
+        });
+    </script>
+</body>
+</html>

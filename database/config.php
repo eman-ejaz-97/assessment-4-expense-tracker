@@ -18,7 +18,15 @@ define('DB_PASS', 'postgres');
 // Application configuration
 define('APP_NAME', 'Smart Expense Tracker');
 define('APP_VERSION', '2.0');
-define('SITE_URL', 'http://localhost/20034038_Assessment_3');
+define('SITE_URL', 'http://localhost/20034038_Assessment_4');
+
+// Email configuration (Gmail SMTP)
+define('SMTP_HOST', 'smtp.gmail.com');
+define('SMTP_PORT', 587);
+define('SMTP_USER', 'memanejaz97@gmail.com');
+define('SMTP_PASS', 'zrhf ilnw ddio mlys');
+define('SMTP_FROM', 'memanejaz97@gmail.com');
+define('SMTP_FROM_NAME', 'Smart Expense Tracker');
 
 /**
  * Establishes a secure PDO database connection to PostgreSQL

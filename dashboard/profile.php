@@ -60,20 +60,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 setFlashMessage('success', 'Profile updated successfully!');
                 redirect(SITE_URL . '/dashboard/profile.php');
             }
-        } elseif ($action === 'change_password') {
+        } elseif ($action === 'request_password_change') {
+            // Step 1: Verify current password and send verification code
             $currentPassword = $_POST['current_password'] ?? '';
-            $newPassword = $_POST['new_password'] ?? '';
-            $confirmPassword = $_POST['confirm_password'] ?? '';
             
-            // Verify current password
-            if (!verifyPassword($currentPassword, $user['password_hash'])) {
+            if (empty($currentPassword)) {
+                $errors[] = 'Current password is required.';
+            } elseif (!verifyPassword($currentPassword, $user['password_hash'])) {
                 $errors[] = 'Current password is incorrect.';
             }
             
+            if (empty($errors)) {
+                // Generate and send verification code
+                $requestData = createPasswordChangeRequest($userId, $user['email']);
+                
+                if ($requestData) {
+                    $emailSent = sendPasswordChangeVerificationEmail(
+                        $user['email'], 
+                        $requestData['first_name'], 
+                        $requestData['code']
+                    );
+                    
+                    if ($emailSent) {
+                        $_SESSION['password_change_pending'] = true;
+                        $_SESSION['password_change_email'] = $user['email'];
+                        logActivity('PASSWORD_CHANGE_REQUESTED', 'Password change verification code sent');
+                        setFlashMessage('success', 'A verification code has been sent to your email. Please enter it below.');
+                    } else {
+                        $errors[] = 'Failed to send verification email. Please try again.';
+                    }
+                } else {
+                    $errors[] = 'Failed to initiate password change. Please try again.';
+                }
+            }
+            
+        } elseif ($action === 'verify_and_change_password') {
+            // Step 2: Verify code and change password
+            $code = trim($_POST['verification_code'] ?? '');
+            $newPassword = $_POST['new_password'] ?? '';
+            $confirmPassword = $_POST['confirm_password'] ?? '';
+            
+            // Validate code
+            if (empty($code)) {
+                $errors[] = 'Verification code is required.';
+            } elseif (!preg_match('/^\d{6}$/', $code)) {
+                $errors[] = 'Please enter a valid 6-digit code.';
+            }
+            
             // Validate new password
-            $passwordValidation = validatePassword($newPassword);
-            if (!$passwordValidation['valid']) {
-                $errors[] = $passwordValidation['message'];
+            if (empty($newPassword)) {
+                $errors[] = 'New password is required.';
+            } else {
+                $passwordValidation = validatePassword($newPassword);
+                if (!$passwordValidation['valid']) {
+                    $errors[] = $passwordValidation['message'];
+                }
             }
             
             if ($newPassword !== $confirmPassword) {
@@ -81,15 +122,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             
             if (empty($errors)) {
+                // Debug: Check what's in the database
                 $pdo = getDBConnection();
-                $hashedPassword = hashPassword($newPassword);
-                $stmt = $pdo->prepare("UPDATE users SET password_hash = ?, updated_at = NOW() WHERE user_id = ?");
-                $stmt->execute([$hashedPassword, $userId]);
+                $debugStmt = $pdo->prepare("
+                    SELECT reset_code, used, expires_at, NOW() as db_now
+                    FROM password_resets 
+                    WHERE LOWER(email) = LOWER(?)
+                    ORDER BY created_at DESC LIMIT 1
+                ");
+                $debugStmt->execute([$user['email']]);
+                $debugInfo = $debugStmt->fetch();
                 
-                logActivity('PASSWORD_CHANGE', 'Changed account password');
-                setFlashMessage('success', 'Password changed successfully!');
-                redirect(SITE_URL . '/dashboard/profile.php');
+                if ($debugInfo) {
+                    // Temporarily show debug info
+                    $errors[] = "DEBUG - Stored code: " . $debugInfo['reset_code'] . " | You entered: " . $code;
+                    $errors[] = "DEBUG - Used: " . ($debugInfo['used'] ? 'YES' : 'NO') . " | Expires: " . $debugInfo['expires_at'] . " | DB Now: " . $debugInfo['db_now'];
+                } else {
+                    $errors[] = "DEBUG - No reset record found for email: " . $user['email'];
+                }
+                
+                // Verify the code
+                $resetData = verifyResetCode($user['email'], $code);
+                
+                if ($resetData) {
+                    // Update password
+                    $pdo = getDBConnection();
+                    $hashedPassword = hashPassword($newPassword);
+                    $stmt = $pdo->prepare("UPDATE users SET password_hash = ?, updated_at = NOW() WHERE user_id = ?");
+                    $stmt->execute([$hashedPassword, $userId]);
+                    
+                    // Mark code as used
+                    $stmt = $pdo->prepare("UPDATE password_resets SET used = TRUE WHERE reset_id = ?");
+                    $stmt->execute([$resetData['reset_id']]);
+                    
+                    // Clear session flags
+                    unset($_SESSION['password_change_pending']);
+                    unset($_SESSION['password_change_email']);
+                    
+                    // Send confirmation email
+                    sendPasswordChangedEmail($user['email'], $user['first_name']);
+                    
+                    logActivity('PASSWORD_CHANGE', 'Password changed with email verification');
+                    setFlashMessage('success', 'Password changed successfully! A confirmation email has been sent.');
+                    redirect(SITE_URL . '/dashboard/profile.php');
+                } else {
+                    $errors[] = 'Invalid or expired verification code. Please request a new one.';
+                }
             }
+            
+        } elseif ($action === 'cancel_password_change') {
+            // Cancel the password change process
+            unset($_SESSION['password_change_pending']);
+            unset($_SESSION['password_change_email']);
+            setFlashMessage('info', 'Password change cancelled.');
+            redirect(SITE_URL . '/dashboard/profile.php');
         }
     }
 }
@@ -242,31 +328,76 @@ $csrfToken = generateCSRFToken();
                             <h2 id="password-title">Change Password</h2>
                         </div>
                         
-                        <form method="POST" action="">
-                            <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
-                            <input type="hidden" name="action" value="change_password">
-                            
-                            <div class="form-group">
-                                <label for="current_password" class="form-label">Current Password <span class="required">*</span></label>
-                                <input type="password" id="current_password" name="current_password" 
-                                       class="form-input" required autocomplete="current-password">
+                        <?php if (isset($_SESSION['password_change_pending']) && $_SESSION['password_change_pending']): ?>
+                            <!-- Step 2: Enter verification code and new password -->
+                            <div class="alert alert--info" style="margin-bottom: 1rem;">
+                                A verification code has been sent to <strong><?php echo htmlspecialchars($user['email']); ?></strong>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="new_password" class="form-label">New Password <span class="required">*</span></label>
-                                <input type="password" id="new_password" name="new_password" 
-                                       class="form-input" required autocomplete="new-password">
-                                <small class="form-hint">8+ characters with uppercase, lowercase, number & special character</small>
+                            <form method="POST" action="">
+                                <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
+                                <input type="hidden" name="action" value="verify_and_change_password">
+                                
+                                <div class="form-group">
+                                    <label for="verification_code" class="form-label">Verification Code <span class="required">*</span></label>
+                                    <input type="text" id="verification_code" name="verification_code" 
+                                           class="form-input" required maxlength="6" pattern="\d{6}"
+                                           placeholder="000000" autocomplete="one-time-code"
+                                           style="font-size: 1.25rem; letter-spacing: 0.3rem; text-align: center; font-family: monospace;">
+                                    <small class="form-hint">Enter the 6-digit code from your email</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="new_password" class="form-label">New Password <span class="required">*</span></label>
+                                    <input type="password" id="new_password" name="new_password" 
+                                           class="form-input" required autocomplete="new-password">
+                                    <small class="form-hint">8+ characters with uppercase, lowercase, number & special character</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="confirm_password" class="form-label">Confirm New Password <span class="required">*</span></label>
+                                    <input type="password" id="confirm_password" name="confirm_password" 
+                                           class="form-input" required autocomplete="new-password">
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem;">
+                                    <button type="submit" class="btn btn--primary">Verify & Change Password</button>
+                                    <button type="submit" name="action" value="cancel_password_change" class="btn btn--secondary">Cancel</button>
+                                </div>
+                            </form>
+                            
+                            <div style="margin-top: 1rem; text-align: center;">
+                                <form method="POST" action="" style="display: inline;">
+                                    <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
+                                    <input type="hidden" name="action" value="cancel_password_change">
+                                    <small>Didn't receive the code? Cancel and try again.</small>
+                                </form>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="confirm_password" class="form-label">Confirm New Password <span class="required">*</span></label>
-                                <input type="password" id="confirm_password" name="confirm_password" 
-                                       class="form-input" required autocomplete="new-password">
-                            </div>
+                            <script>
+                                document.getElementById('verification_code').addEventListener('input', function(e) {
+                                    this.value = this.value.replace(/\D/g, '').substring(0, 6);
+                                });
+                            </script>
+                        <?php else: ?>
+                            <!-- Step 1: Verify current password -->
+                            <p style="margin-bottom: 1rem; color: var(--medium-gray);">
+                                To change your password, first verify your current password. A verification code will be sent to your email.
+                            </p>
                             
-                            <button type="submit" class="btn btn--secondary">Change Password</button>
-                        </form>
+                            <form method="POST" action="">
+                                <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
+                                <input type="hidden" name="action" value="request_password_change">
+                                
+                                <div class="form-group">
+                                    <label for="current_password" class="form-label">Current Password <span class="required">*</span></label>
+                                    <input type="password" id="current_password" name="current_password" 
+                                           class="form-input" required autocomplete="current-password">
+                                </div>
+                                
+                                <button type="submit" class="btn btn--secondary">Send Verification Code</button>
+                            </form>
+                        <?php endif; ?>
                     </section>
                 </div>
             </div>
